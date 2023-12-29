@@ -1,7 +1,5 @@
 <?php
-    include("../lib/auth.php");
-
-    session_start();
+    require("../lib/auth.php");
 
     $username = $_SESSION['username'];
     $user_id = $_SESSION['user_id'];
@@ -53,10 +51,23 @@
 ?>
 
 <body class="h-screen">
-    <?php include("../components/navbar.php"); ?>
+    <header>
+        <?php
+            include("../components/navbar.php")
+        ?>
+    </header>
+    
 
-    <section class="mx-auto w-full max-w-7xl py-8 px-4">
-        <h1 class="text-5xl font-bold">Notes.</h1>
+    <main class="container max-w-7xl">
+        <div class="flex justify-between">
+            <h1 class="text-5xl font-bold">Notes.</h1>
+            <a href='new.php'>
+                <div class='bg-black text-white py-2 px-6 rounded-md' role='button'>
+                    <span class='text-lg font-bold'>+</span> Create Note
+                </div>
+            </a>
+        </div>
+        
 
         <div class="grid grid-cols-3 gap-4 mt-8">
             <?php
@@ -73,7 +84,7 @@
             }
             ?>
         </div>
-    </section>
+    </main>
 </body>
 
 </html>

@@ -15,7 +15,7 @@
             header('Location: app');
             exit;
         } else {
-            echo "<script>alert('Invalid username or password.');</script>";
+            $error = 'Invalid username or password.';
         }
     }
 ?>
@@ -40,11 +40,11 @@
             <?php } ?>
             <form method="POST" action="">
                 <div class="mb-4">
-                    <label for="username" class="block text-gray-700">Username:</label>
+                    <label for="username" class="block text-gray-700 mb-1">Username:</label>
                     <input type="text" id="username" name="username" required class="border border-gray-300 rounded px-4 py-2 w-full">
                 </div>
                 <div class="mb-4">
-                    <label for="password" class="block text-gray-700">Password:</label>
+                    <label for="password" class="block text-gray-700 mb-1">Password:</label>
                     <input type="password" id="password" name="password" required class="border border-gray-300 rounded px-4 py-2 w-full">
                 </div>
                 <div class="mb-4">

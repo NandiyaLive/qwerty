@@ -1,16 +1,14 @@
-<?php
+<?php 
     require_once("../lib/config.php");
     require("../lib/auth.php");
-
-    // TODO - get note using id from query string
 ?>
 
 <!DOCTYPE html>
-<html>
-
-<?php 
+<html lang="en">
+    
+<?php
     include("../components/head.php");
-    render_head("Note");
+    render_head("Account");
 ?>
 
 <body>
@@ -22,8 +20,7 @@
     
 
     <main class="container max-w-7xl">
-
+        <h1 class="text-5xl font-bold">Account</h1>
     </main>
 </body>
-
 </html>

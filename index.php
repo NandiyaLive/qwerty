@@ -2,13 +2,13 @@
 <html lang="en">
 
 <?php
-include("components/head.php");
-render_head("");
+    include("components/head.php");
+    render_head("");
 ?>
 
 <body class="bg-gray-100">
     <header class=" py-8">
-        <nav class="container mx-auto px-4 flex items-center justify-between">
+        <nav class="container mx-auto max-w-7xl flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 864 864" class="h-10">
                     <rect width="864" height="864" fill="#F7DF1E" rx="120" />
@@ -24,9 +24,9 @@ render_head("");
                 </div>
             </a>
         </nav>
-    </header>
+    </header>    
 
-    <div class="container mx-auto px-4 py-8">
+    <main class="container max-w-7xl">
         <section class="mb-8">
             <h2 class="text-2xl font-bold mb-4">Features</h2>
             <ul class="list-disc list-inside">
@@ -42,7 +42,7 @@ render_head("");
                 <p class="text-center text-gray-600">© 2022 QWERTY. All Rights Reserved.</p>
             </div>
         </footer>
-    </div>
+    </main>
 </body>
 
 </html>

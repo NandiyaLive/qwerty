@@ -1,25 +1,12 @@
 <?php
-// Check if form is submitted
-if ($_SERVER['METHOD'] === 'POST') {
-    // Get form data
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    // Check if form is submitted
+    if ($_SERVER['METHOD'] === 'POST') {
+        // Get form data
 
-    // Check if username already exists
-    $existing_usernames = ['john', 'jane', 'doe']; // Replace with your existing usernames array
-    if (in_array($username, $existing_usernames)) {
-        $error = 'Username already exists. Please choose a different username.';
-        exit;
+        // Check if username already exists
+
+        // TODO: Add code to register the user
     }
-
-    // TODO: Add code to register the user
-    // ...
-
-    // Redirect to success page
-    header('Location: success.php');
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -39,21 +26,32 @@ if ($_SERVER['METHOD'] === 'POST') {
             <?php } ?>
             <form method="POST" action="register.php">
                 <div class="mb-4">
-                    <label for="username" class="block text-gray-700">Username:</label>
+                    <label for="name" class="block text-gray-700 mb-1">Name:</label>
+                    <input type="text" id="name" name="name" required class="border border-gray-300 rounded px-4 py-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 mb-1">Email:</label>
+                    <input type="email" id="email" name="email" required class="border border-gray-300 rounded px-4 py-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700 mb-1">Username:</label>
                     <input type="text" id="username" name="username" required class="border border-gray-300 rounded px-4 py-2 w-full">
                 </div>
                 <div class="mb-4">
-                    <label for="password" class="block text-gray-700">Password:</label>
+                    <label for="password" class="block text-gray-700 mb-1">Password:</label>
                     <input type="password" id="password" name="password" required class="border border-gray-300 rounded px-4 py-2 w-full">
                 </div>
                 <div class="mb-4">
-                    <label for="confirm_password" class="block text-gray-700">Confirm Password:</label>
+                    <label for="confirm_password" class="block text-gray-700 mb-1">Confirm Password:</label>
                     <input type="password" id="confirm_password" name="confirm_password" required class="border border-gray-300 rounded px-4 py-2 w-full">
+                </div>
+                <div class="mb-4">
+                    <label for="profile_picture" class="block text-gray-700 mb-1">Profile Picture:</label>
+                    <input type="file" id="profile_picture" name="profile_picture" class="border border-gray-300 rounded px-4 py-2 w-full">
                 </div>
                 <div class="mb-4">
                     <input type="submit" value="Register" class="bg-blue-500 text-white px-4 py-2 rounded">
                 </div>
-
             </form>
 
             <p class="text-gray-500 text-sm">Already have an account? <a href="login.php" class="text-blue-500">Login</a></p>
