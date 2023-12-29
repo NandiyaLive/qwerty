@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../components/head.php"); ?>
+<?php
+    require_once("../lib/config.php");
+    include("../lib/auth.php");
+
+    // TODO - create new note in database using POST data from form and user id from session
+?>
+
+<?php 
+    include("../components/head.php");
+    render_head("New Note");
+?>
 
 <body>
     <?php include("../components/navbar.php"); ?>
