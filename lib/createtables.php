@@ -1,7 +1,7 @@
 <?php
     require_once("config.php");
     
-    $sql = "CREATE TABLE IF NOT EXISTS users (
+    $sql = "CREATE TABLE users (
         id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
@@ -14,7 +14,7 @@
         echo "Error creating table: " . mysqli_error($conn) . "<br>";
     }
 
-    $sql = "CREATE TABLE IF NOT EXISTS notes (
+    $sql = "CREATE TABLE notes (
         id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
         user_id INT(6) NOT NULL,
         title VARCHAR(255) NOT NULL,
