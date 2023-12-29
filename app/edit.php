@@ -4,13 +4,11 @@
 <?php
     require_once("../lib/config.php");
     require("../lib/auth.php");
-
-    // TODO - create new note in database using POST data from form and user id from session
 ?>
 
 <?php
     include("../components/head.php");
-    render_head("New Note");
+    render_head("Edit Note");
 ?>
 
 <body>
@@ -22,12 +20,12 @@
 
 
     <main class="container max-w-7xl">
-        <h1 class="text-2xl font-bold mb-4">Add New Note</h1>
+        <h1 class="text-2xl font-bold mb-4">Edit Note</h1>
+        <!-- Show Banner image and a button to delete image -->
+
         <form action="save_note.php" method="POST">
-            <div class="mb-4">
-                <label for="category" class="block text-gray-700 font-bold mb-2">Banner Image</label>
-                <input type="file" name="banner_image" id="banner_image" class="w-full px-3 py-2 border border-gray-300 rounded">
-            </div>
+            <!-- If banner image is null show a input field to upload image -->
+            
             <div class="mb-4">
                 <label for="title" class="block text-gray-700 font-bold mb-2">Title</label>
                 <input type="text" name="title" id="title" class="w-full px-3 py-2 border border-gray-300 rounded" required>
