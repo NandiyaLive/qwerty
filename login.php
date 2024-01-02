@@ -6,14 +6,24 @@
         $password = $_POST['password'];
         $authenticated = false;
 
-        // Perform authentication logic here
-        // ...
+        $sql = "SELECT * FROM users WHERE username = '$username'";
 
-        // If authentication is successful, redirect to the home page
+        require("lib/config.php");
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+
+            if (password_verify($password, $user['password'])) {
+                $authenticated = true;
+            }
+        }
+
         if ($authenticated) {
+            $_SESSION['user_id'] = $result->fetch_assoc()['id'];
             $_SESSION['username'] = $username;
-            header('Location: app');
-            exit;
+
+            header('Location: account/index.php');
         } else {
             $error = 'Invalid username or password.';
         }
@@ -38,7 +48,7 @@
             <?php if (isset($error)) { ?>
                 <p class="text-red-500 mb-4"><?php echo $error; ?></p>
             <?php } ?>
-            <form method="POST" action="">
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div class="mb-4">
                     <label for="username" class="block text-gray-700 mb-1">Username:</label>
                     <input type="text" id="username" name="username" required class="border border-gray-300 rounded px-4 py-2 w-full">

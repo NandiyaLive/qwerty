@@ -1,5 +1,5 @@
 <?php
-    require "useenv.php";
+    require "useEnv.php";
     
     $db_host = getenv('DB_HOST');
     $db_user = getenv('DB_USER');
