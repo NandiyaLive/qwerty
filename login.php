@@ -20,10 +20,10 @@
         }
 
         if ($authenticated) {
-            $_SESSION['user_id'] = $result->fetch_assoc()['id'];
-            $_SESSION['username'] = $username;
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
 
-            header('Location: account/index.php');
+            header('Location: app/index.php');
         } else {
             $error = 'Invalid username or password.';
         }

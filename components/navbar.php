@@ -8,8 +8,6 @@
             $current_uri = $_SERVER['REQUEST_URI'];
             $url_parts = explode("/", $current_uri);
 
-            session_start();
-
             if ($_SESSION["user_id"]) {
                 echo "<p><a href='../account'>Account</a></p>
                     <a href='../account/logout.php'>
