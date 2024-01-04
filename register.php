@@ -32,6 +32,18 @@
         }
     }
 
+    function isValidEmail($email) {
+        require("lib/config.php");
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $result = $conn->query($sql);
+
+        if($result->num_rows > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $_POST["name"];
         $email = $_POST["email"];
