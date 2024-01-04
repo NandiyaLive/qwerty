@@ -7,7 +7,9 @@
 
         $accepted_extensions = array("jpg", "jpeg", "png", "gif");
 
-        mkdir($target_dir, 0777, true);
+        if(!file_exists($target_dir)) {
+            mkdir($target_dir, 0777, true);
+        }
 
         if (file_exists($target_file)) {
             $error = "Sorry, file already exists.";
