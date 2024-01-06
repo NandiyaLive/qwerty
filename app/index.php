@@ -4,7 +4,12 @@ require("../lib/auth.php");
 $username= $_SESSION['username'];
 $user_id= $_SESSION['user_id'];
 
+
 require("../lib/config.php");
+
+$notes = array();
+
+
 
 ?>
 
