@@ -2,8 +2,8 @@
 <html lang="en">
 
 <?php
-include("components/head.php");
-render_head("");
+    include("components/head.php");
+    render_head("");
 ?>
 
 <body class="bg-gray-100">
