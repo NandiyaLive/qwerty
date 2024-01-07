@@ -27,6 +27,12 @@ if ($result->num_rows > 0) {
     $error = "Create a note to get started!";
 }
 
+//Shorten the input string if necessary
+function truncate($string, $length)
+    {
+        return (strlen($string) > $length) ? substr($string, 0, $length) . "..." : $string;
+    }
+
 
 ?>
 
