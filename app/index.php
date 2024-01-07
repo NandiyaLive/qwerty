@@ -61,6 +61,26 @@ function truncate($string, $length)
                 </div>
             </a>
         </div>
+
+        <div class="grid grid-cols-3 gap-4 mt-8 lg:grid-cols-2 sm:grid-cols-1">
+            <?php
+            if (isset($error)) {
+                echo "<p>" . $error . "</p>";
+            } else {
+                foreach ($notes as $note) {
+                    echo "<a href='note.php?id=" . $note["id"] . "'>";
+                    echo "<div class='bg-white rounded-md border p-4 h-full flex flex-col justify-between'>";
+                    echo "<div>";
+                    echo "<h2 class='text-2xl font-bold mb-4'>" . $note["title"] . "</h2>";
+                    echo "<p>" . truncate($note["content"], 100) . "</p>";
+                    echo "</div>";
+                    echo "<p class='text-gray-500 text-sm mt-4'>" . $note["created_at"] . "</p>";
+                    echo "</div>";
+                    echo "</a>";
+                }
+            }
+            ?>
+        </div>
     </main>
 
 
