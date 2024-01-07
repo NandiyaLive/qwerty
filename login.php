@@ -18,6 +18,15 @@
             $authenticated = true;
         }
     }
+
+    if ($authenticated) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+
+        header('Location: app/index.php');
+    } else {
+        $error = 'Invalid username or password.';
+    }
     
  }
 ?>
