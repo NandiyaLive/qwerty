@@ -1,35 +1,40 @@
 <?php
-    require("../lib/auth.php");
+require("../lib/auth.php");
 
-    $username = $_SESSION['username'];
-    $user_id = $_SESSION['user_id'];
+$username= $_SESSION['username'];
+$user_id= $_SESSION['user_id'];
 
-    require("../lib/config.php");
 
-    $notes = array();
+require("../lib/config.php");
 
-    $sql = "SELECT * FROM notes WHERE user_id = $user_id ORDER BY created_at DESC";
-    $result = $conn->query($sql);
+$notes = array();
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $note = array(
-                "id" => $row["id"],
-                "title" => $row["title"],
-                "content" => $row["content"],
-                "created_at" => $row["created_at"]
-            );
+$sql = "SELECT * FROM notes WHERE user_id = $user_id ORDER BY created_at DESC";
+$result = $conn->query($sql);
 
-            array_push($notes, $note);
-        }
-    } else {
-        $error = "Create a note to get started!";
+//fetch Notes from DB
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $note = array(
+            "id" => $row["id"],
+            "title" => $row["title"],
+            "content" => $row["content"],
+            "created_at" => $row["created_at"]
+        );
+
+        array_push($notes, $note);
     }
+} else {
+    $error = "Create a note to get started!";
+}
 
-    function truncate($string, $length)
+//Shorten the input string if necessary
+function truncate($string, $length)
     {
         return (strlen($string) > $length) ? substr($string, 0, $length) . "..." : $string;
     }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -42,11 +47,10 @@
 
 <body class="h-screen">
     <header>
-        <?php
-            include("../components/navbar.php")
-        ?>
+    <?php
+         include("../components/navbar.php")
+    ?>
     </header>
-
 
     <main class="container max-w-7xl mb-16">
         <div class="flex justify-between">
@@ -57,7 +61,6 @@
                 </div>
             </a>
         </div>
-
 
         <div class="grid grid-cols-3 gap-4 mt-8 lg:grid-cols-2 sm:grid-cols-1">
             <?php
@@ -79,6 +82,9 @@
             ?>
         </div>
     </main>
+
+
 </body>
+
 
 </html>
