@@ -40,6 +40,10 @@ function truncate($string, $length)
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+    include("../components/head.php");
+    render_head("Notes");
+?>
 
 <body>
 
