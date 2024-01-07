@@ -11,11 +11,6 @@
             mkdir($target_dir, 0777, true);
         }
 
-        if (file_exists($target_file)) {
-            $error = "Sorry, file already exists.";
-            $upload_error = true;
-        }
-
         if ($file["size"] > $size_limit) {
             $error = "Sorry, your file is too large.";
             $upload_error = true;

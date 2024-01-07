@@ -108,7 +108,12 @@
         <div class="bg-white p-8 rounded shadow-md">
             <h2 class="text-2xl mb-4">Register</h2>
             <?php if (isset($_SESSION["error"])) { ?>
-                <p class="text-red-500 mb-4"><?php echo $_SESSION["error"]; ?></p>
+                <p class="text-red-500 mb-4">
+                    <?php
+                        echo $_SESSION["error"];
+                        unset($_SESSION["error"]);
+                    ?>
+                </p>
             <?php } ?>
             <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
                 <div class="mb-4">

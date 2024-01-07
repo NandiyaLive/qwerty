@@ -43,9 +43,11 @@
 
         <div class="flex flex-col gap-4 mt-8">
             <div class="flex gap-4">
-                <div class="flex-shrink-0">
-                    <img src="../<?php echo $dp_path; ?>" alt="Profile Picture" class="rounded-full w-32 h-32">
-                </div>
+                <?php if($user["dp_path"] === null) { ?>
+                    <div class="bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-red-200 via-red-300 to-yellow-200 rounded-full w-64 h-64"></div>
+                <?php } else { ?>
+                    <img src="../<?php echo $dp_path; ?>" alt="Profile Picture" class="rounded-full w-64 h-64">
+                <?php } ?>
                 <div>
                     <p class="text-2xl font-bold"><?php echo $name; ?></p>
                     <p class="text-gray-500 ">@<?php echo $username; ?></p>
