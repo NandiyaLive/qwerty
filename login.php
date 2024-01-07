@@ -6,6 +6,7 @@
     $password = $_POST['password'];
     $authenticated = false;
 
+    $sql = "SELECT *From users WHERE username = '$username'";
     
  }
 ?>
