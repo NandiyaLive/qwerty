@@ -9,6 +9,9 @@ require("../lib/config.php");
 
 $notes = array();
 
+$sql = "SELECT * FROM notes WHERE user_id = $user_id ORDER BY created_at DESC";
+$result = $conn->query($sql);
+
 
 
 ?>
