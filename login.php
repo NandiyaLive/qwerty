@@ -7,6 +7,10 @@
     $authenticated = false;
 
     $sql = "SELECT *From users WHERE username = '$username'";
+
+    require("lib/cofig.php");
+    $result = $conn ->query($sql);
+
     
  }
 ?>
