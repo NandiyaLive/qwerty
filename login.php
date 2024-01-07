@@ -11,6 +11,13 @@
     require("lib/cofig.php");
     $result = $conn ->query($sql);
 
+    if ($result -> num_rows > 0){
+        $user = $result -> fetch_assoc();
+
+        if(password_verify($password,$user['password'])){
+            $authenticated = true;
+        }
+    }
     
  }
 ?>
