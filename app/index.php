@@ -45,7 +45,23 @@ function truncate($string, $length)
     render_head("Notes");
 ?>
 
-<body>
+<body class="h-screen">
+    <header>
+    <?php
+         include("../components/navbar.php")
+    ?>
+    </header>
+
+    <main class="container max-w-7xl mb-16">
+        <div class="flex justify-between">
+            <h1 class="text-5xl font-bold">Notes.</h1>
+            <a href='new.php'>
+                <div class='bg-black text-white py-2 px-6 rounded-md' role='button'>
+                    Create Note
+                </div>
+            </a>
+        </div>
+    </main>
 
 
 </body>
