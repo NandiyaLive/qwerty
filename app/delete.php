@@ -2,8 +2,12 @@
     require_once("../lib/config.php");
     require("../lib/auth.php");
 
-    $note_id = $_GET["id"];
+    if(isset($_GET["id"])) {
+        $_SESSION["note_id"] = $_GET["id"];
+    }
+
     $user_id = $_SESSION["user_id"];
+    $note_id = $_SESSION["note_id"];
 
     $sql = "SELECT * FROM notes WHERE id = '$note_id' AND user_id = '$user_id'";
 
@@ -18,14 +22,17 @@
     }
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $sql = "DELETE FROM notes WHERE id = '$note_id' AND user_id = '$user_id'";
+        if(isset($_POST["delete"])) {
+            $sql = "DELETE FROM notes WHERE id = '$note_id' AND user_id = '$user_id'";
 
-        if($conn->query($sql) === TRUE) {
-            require("../lib/deleteImage.php");
-            deleteImage($banner_path);
-            header("Location: .");
-        } else {
-            $_SESSION["error"] = "Error: " . $sql . "<br>" . $conn->error;
+            if($conn->query($sql) === TRUE) {
+                unset($_SESSION["note_id"]);
+                require("../lib/deleteImage.php");
+                deleteImage($banner_path);
+                header("Location: .");
+            } else {
+                $_SESSION["error"] = "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
     }
 ?>
@@ -70,7 +77,7 @@
                 </a>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                     <input type="hidden" name="note_id" value="<?php echo $note_id ?>">
-                    <button type="submit" class="bg-red-500 text-white py-2 px-8 rounded">
+                    <button type="submit" name="delete" class="bg-red-500 text-white py-2 px-8 rounded">
                         Delete
                     </button>
                 </form>

@@ -5,14 +5,14 @@
     require_once("../lib/config.php");
     require("../lib/auth.php");
     
-    $note_id = null;
-
     if(isset($_GET["id"])) {
-        $note_id = $_GET["id"];
+        $_SESSION["note_id"] = $_GET["id"];    
     } else {
         $_SESSION["error"] = "Note not found";
     }
+    
     $user_id = $_SESSION["user_id"];
+    $note_id = $_SESSION["note_id"];
 
     $sql = "SELECT * FROM notes WHERE id = '$note_id' AND user_id = '$user_id'";
 
@@ -33,7 +33,8 @@
             $result = $conn->query($sql);
 
             if($result) {
-                unlink("../" . $banner_path);
+                require("../lib/deleteImage.php");
+                deleteImage($banner_path);
                 header("Location: ./edit.php?id=$note_id");
             } else {
                 $_SESSION["error"] = "Error deleting image";
@@ -43,10 +44,25 @@
         if(isset($_POST["updatenote"])) {
             $new_title = $_POST["title"];
             $new_content = $_POST["content"];
+            $banner_path = null;
 
-            if($_FILES["banner"]["name"] != "") {
-                $banner_path = "uploads/" . $_FILES["banner"]["name"];
-                move_uploaded_file($_FILES["banner"]["tmp_name"], "../" . $banner_path);
+            if(isset($_FILES["banner_image"])){
+                require("../lib/uploadImage.php");
+                $banner_image = $_FILES["banner_image"];
+    
+                $filename = pathinfo($banner_image["name"], PATHINFO_FILENAME);
+    
+                $target_file_name = $filename . "_" . time() . "." . pathinfo($banner_image["name"], PATHINFO_EXTENSION);
+    
+                $upload_status = uploadImage($banner_image, "../uploads/banner_images/", $target_file_name);
+    
+                if($upload_status["status"] === "success") {
+                    $banner_path = $upload_status["file_path"];
+                } else {
+                    $_SESSION["error"] = $upload_status["error"];
+                }
+            } else {
+                $banner_path = null;
             }
 
             $sql = "UPDATE notes SET title = '$new_title', content = '$new_content', banner_path = '$banner_path' WHERE id = '$note_id' AND user_id = '$user_id'";
@@ -86,7 +102,7 @@
             </div>
         <?php } else { ?>
             
-            <?php if($banner_path != NULL) { ?>
+            <?php if($banner_path != NULL || $banner_path != "") { ?>
                 <img src="<?php echo $banner_path ?>" alt="Banner Image" class="w-full h-96 object-cover object-center">
 
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">

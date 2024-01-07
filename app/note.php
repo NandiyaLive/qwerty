@@ -46,7 +46,9 @@
                 </span>
             </div>
         <?php } else { ?>
-            <img src="<?php echo $banner_path ?>" alt="Banner Image" class="w-full h-96 object-cover object-center">
+            <?php if($banner_path != NULL || $banner_path != "") { ?>
+                <img src="<?php echo $banner_path ?>" alt="Banner Image" class="w-full h-96 object-cover object-center">
+            <?php } ?>
 
             <div class="flex items-center justify-end gap-2 mt-4">
                 <a href="./edit.php?id=<?php echo $note_id ?>">
