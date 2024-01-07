@@ -1,12 +1,11 @@
 <?php
-    require "useEnv.php";
-    
-    $db_host = getenv('DB_HOST');
-    $db_user = getenv('DB_USER');
-    $db_pass = getenv('DB_PASS');
-    $db_name = getenv('DB_NAME');
+    $DB_HOST="localhost";
+    $DB_PORT=3306;
+    $DB_USER="root";
+    $DB_PASS="";
+    $DB_NAME="qwerty";
 
-    $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+    $conn = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, $DB_PORT);
 
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
