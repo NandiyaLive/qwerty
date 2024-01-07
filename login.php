@@ -30,3 +30,12 @@
     
  }
 ?>
+<!DOCTYPE html>
+<html>
+
+<?php 
+    include("components/head.php");
+    render_head("Login");
+?>
+
+</html>
