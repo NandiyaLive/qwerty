@@ -2,8 +2,8 @@
 <html lang="en">
 
 <?php
-    require_once("../lib/config.php");
     require("../lib/auth.php");
+    require_once("../lib/config.php");
 
     $username = $_SESSION['username'];
 
@@ -25,7 +25,7 @@
 <body>
     <header>
         <?php
-        include("../components/navbar.php")
+            include("../components/navbar.php")
         ?>
     </header>
 
@@ -42,11 +42,11 @@
         </div>
 
         <div class="flex flex-col gap-4 mt-8">
-            <div class="flex gap-4">
+            <div class="flex gap-16 md:flex-col">
                 <?php if($user["dp_path"] === null) { ?>
-                    <div class="bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-red-200 via-red-300 to-yellow-200 rounded-full w-64 h-64"></div>
+                    <div class="bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-red-200 via-red-300 to-yellow-200 rounded-full w-64 h-64 sm:mx-auto"></div>
                 <?php } else { ?>
-                    <img src="../<?php echo $dp_path; ?>" alt="Profile Picture" class="rounded-full w-64 h-64">
+                    <img src="../<?php echo $dp_path; ?>" alt="Profile Picture" class="rounded-full w-64 h-64 md:mx-auto">
                 <?php } ?>
                 <div>
                     <p class="text-2xl font-bold"><?php echo $name; ?></p>

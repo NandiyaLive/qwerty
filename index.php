@@ -28,7 +28,7 @@
 
     <main class="container max-w-7xl">
         <section class="mt-20">
-            <div class="flex flex-col md:flex-row gap-8 items-center">
+            <div class="flex flex-col md:flex-row gap-8 items-center md:flex-col">
                 <div class="w-full max-w-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 737.39 544" class="w-full">
                         <path fill="#3f3d56" d="M273.316 335.182 120.67 367.357a17.02 17.02 0 0 1-20.14-13.129L74.334 229.96a17.02 17.02 0 0 1 13.129-20.14l152.646-32.176a17.02 17.02 0 0 1 20.14 13.129l26.194 124.269a17.02 17.02 0 0 1-13.128 20.14ZM87.876 211.775a15.017 15.017 0 0 0-11.584 17.772l26.194 124.269a15.017 15.017 0 0 0 17.771 11.584l152.646-32.175a15.017 15.017 0 0 0 11.584-17.772l-26.194-124.269a15.017 15.017 0 0 0-17.771-11.584Z" />
@@ -130,7 +130,7 @@
                 QWERTY is packed with features to help you take notes and stay organized.
             </p>
 
-            <div class="grid grid-cols-4 gap-8 mt-20">
+            <div class="grid grid-cols-4 gap-8 mt-20 md:grid-cols-2 sm:grid-cols-1">
                 <div class="border p-4 rounded-md">
                     <div class="w-16">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon glyph" viewBox="0 0 24 24">

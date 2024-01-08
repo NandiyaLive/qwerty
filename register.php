@@ -98,7 +98,10 @@
     }
 ?>
 
-<?php include("components/head.php"); ?>
+<?php 
+    include("components/head.php");
+    render_head("Register");
+?>
 
 <body class="bg-gray-100">
     <div class="flex flex-col gap-4 justify-center items-center h-screen">
