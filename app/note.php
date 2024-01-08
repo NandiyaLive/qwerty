@@ -1,6 +1,6 @@
 <?php
-    require_once("../lib/config.php");
     require("../lib/auth.php");
+    require_once("../lib/config.php");
 
     $note_id = $_GET["id"];
     $user_id = $_SESSION["user_id"];

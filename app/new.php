@@ -2,15 +2,17 @@
 <html lang="en">
 
 <?php
-    require_once("../lib/config.php");
     require("../lib/auth.php");
+    require_once("../lib/config.php");
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $title = $_POST["title"];
-        $content = $_POST["content"];
+        $content = addslashes($_POST["content"]);
         $user_id = $_SESSION["user_id"];
 
-        if(isset($_FILES["banner_image"])){
+        $banner_path = null;
+
+        if(isset($_FILES["banner_image"]) && $_FILES["banner_image"]["size"] > 0) {
             require("../lib/uploadImage.php");
             $banner_image = $_FILES["banner_image"];
 
@@ -23,10 +25,8 @@
             if($upload_status["status"] === "success") {
                 $banner_path = $upload_status["file_path"];
             } else {
-                $_SESSION["error"] = $upload_status["error"];
+                $_SESSION["error"] = $upload_status["message"];
             }
-        } else {
-            $banner_path = null;
         }
 
         if(!isset($_SESSION["error"])) {
@@ -71,14 +71,17 @@
                 <label for="category" class="block text-gray-700 font-bold mb-2">Banner Image</label>
                 <input type="file" name="banner_image" id="banner_image" class="w-full px-3 py-2 border border-gray-300 rounded">
             </div>
+
             <div class="mb-4">
                 <label for="title" class="block text-gray-700 font-bold mb-2">Title</label>
                 <input type="text" name="title" id="title" class="w-full px-3 py-2 border border-gray-300 rounded" required>
             </div>
+
             <div class="mb-4">
                 <label for="content" class="block text-gray-700 font-bold mb-2">Content</label>
                 <textarea name="content" id="content" rows="5" class="w-full px-3 py-2 border border-gray-300 rounded" required></textarea>
             </div>
+
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save Note</button>
         </form>
     </main>

@@ -2,8 +2,8 @@
 <html lang="en">
 
 <?php
-    require("../lib/config.php");
     require("../lib/auth.php");
+    require("../lib/config.php");
 
     $username = $_SESSION['username'];
 
@@ -28,43 +28,19 @@
             return true;
         }
     }
-
-    function isValidUsername($username) {
-        require("../lib/config.php");  
-        if(preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
-            $sql = "SELECT * FROM users WHERE username = '$username'";
-            $result = $conn->query($sql);
-
-            if($result->num_rows > 0) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($_POST["savechanges"])) {
             $new_name = $_POST["name"];
             $new_email = $_POST["email"];
-            $run_sql = true;
+            
+            $sql = "UPDATE users SET name = '$new_name', email = '$new_email' WHERE id = '$user_id'";
+            $result = $conn->query($sql);
 
-            if(!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION["error"] = "Invalid email address.";
-                $run_sql = false;
-            }
-
-            if ($run_sql) {
-                $sql = "UPDATE users SET name = '$new_name', email = '$new_email' WHERE id = '$user_id'";
-                $result = $conn->query($sql);
-
-                if($result) {
-                    header("Location: index.php");
-                } else {
-                    $_SESSION["error"] = "Something went wrong.";
-                }
+            if($result) {
+                header("Location: index.php");
+            } else {
+                $_SESSION["error"] = "Something went wrong.";
             }
         }
 
@@ -118,8 +94,8 @@
 
 
     <main class="container max-w-7xl mb-16">
-        <div class="flex gap-16">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data" autocomplete="off" class="flex flex-col gap-4 w-fit min-w-64">
+        <div class="flex gap-16 md:flex-col">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data" autocomplete="off" class="flex flex-col gap-4 w-fit min-w-64 md:mx-auto">
                 <?php if($user["dp_path"] === null) { ?>
                     <div class="bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-red-200 via-red-300 to-yellow-200 rounded-full w-64 h-64"></div>
                 <?php } else { ?>
@@ -127,7 +103,7 @@
                 <?php } ?>
             </form>
 
-            <div class="grid grid-cols-2 gap-8 w-full">
+            <div class="grid grid-cols-2 gap-8 w-full lg:grid-cols-1">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4">
                     <h3 class="text-2xl font-medium">Edit Account</h3>
 
